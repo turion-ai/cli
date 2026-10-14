@@ -1,5 +1,5 @@
 {
-  "name": "turion",
+  "name": "@turion-ai/turion",
   "version": "0.0.1",
   "description": "turion CLI — coming soon.",
   "bin": {

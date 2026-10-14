@@ -6,14 +6,14 @@ This repository hosts the turion CLI for multiple languages, one per folder:
 
 | Folder | Language | Package | Install |
 | --- | --- | --- | --- |
-| [`node/`](node/) | Node.js | [turion on npm](https://www.npmjs.com/package/turion) | `npm i -g turion` or `npx turion` |
+| [`node/`](node/) | Node.js | [@turion-ai/turion on npm](https://www.npmjs.com/package/@turion-ai/turion) | `npm i -g @turion-ai/turion` or `npx @turion-ai/turion` |
 
 The CLI is currently a placeholder; commands will land in a future release.
 
 ## Uninstalling
 
 ```bash
-npm uninstall -g turion
+npm uninstall -g @turion-ai/turion
 ```
 
 ## License
