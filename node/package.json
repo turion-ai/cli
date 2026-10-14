@@ -1,0 +1,23 @@
+{
+  "name": "turion",
+  "version": "0.0.1",
+  "description": "turion CLI — coming soon.",
+  "bin": {
+    "turion": "bin/turion.js"
+  },
+  "files": [
+    "bin/turion.js"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "turion",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/turion-ai/cli.git"
+  },
+  "license": "MIT"
+}

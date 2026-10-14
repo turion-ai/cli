@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  node:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: node
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Syntax check
+        run: node --check bin/turion.js
+      - name: Smoke test --help
+        run: node bin/turion.js --help
+      - name: Smoke test --version
+        run: node bin/turion.js --version
+      - name: Pack
+        run: npm pack --dry-run

@@ -1,0 +1,40 @@
+name: Publish
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  npm:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        working-directory: node
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      # Publishing is via trusted publishing (OIDC): npm mints a short-lived
+      # credential from this workflow's identity, so no token is stored here.
+      # Needs npm 11.5.1+, newer than the one bundled with Node 22. `turion`
+      # must name this repo and this workflow file as its trusted publisher on
+      # npmjs.com — which requires the package to exist, so the very first
+      # version has to be published manually (`npm publish` from node/).
+      - name: Update npm
+        run: npm install -g npm@latest
+      - name: Syntax check
+        run: node --check bin/turion.js
+      - name: Publish
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "turion@$VERSION" version >/dev/null 2>&1; then
+            echo "turion@$VERSION already on npm, skipping"
+          else
+            npm publish --provenance --access public
+          fi
